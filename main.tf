@@ -23,7 +23,7 @@ resource "aws_db_instance" "g73_techchallenge_db" {
   engine               = "postgres"
   engine_version       = "16.1"
   instance_class       = "db.t3.micro"
-  name                 = "g73-techchallenge-db"
+  name                 = "g73-techchallengedb"
   username             = var.g73_techchallenge_db_username
   password             = var.g73_techchallenge_db_password
   parameter_group_name = "default.postgres12"

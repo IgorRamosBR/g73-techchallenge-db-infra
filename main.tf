@@ -29,4 +29,5 @@ resource "aws_db_instance" "g73_techchallenge_db" {
   password             = var.g73_techchallenge_db_password
   parameter_group_name = "default.postgres16"
   publicly_accessible  = true
+  skip_final_snapshot  = true
 }

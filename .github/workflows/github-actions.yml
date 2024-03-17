@@ -33,6 +33,7 @@ jobs:
   apply:
     name: 'Terraform plan'
     runs-on: ubuntu-latest
+    needs: plan
     environment: production
 
     steps:

@@ -24,7 +24,9 @@ resource "aws_db_instance" "g73_techchallenge_db" {
   engine_version       = "16.1"
   instance_class       = "db.t3.micro"
   name                 = "techchallengedb"
+  identifier           = "g73-techchallenge-db"
   username             = var.g73_techchallenge_db_username
   password             = var.g73_techchallenge_db_password
   parameter_group_name = "default.postgres16"
+  publicly_accessible  = true
 }

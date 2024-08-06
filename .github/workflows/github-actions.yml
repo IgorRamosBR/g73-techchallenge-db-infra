@@ -10,6 +10,7 @@ env:
   AWS_SESSION_TOKEN: ${{ secrets.AWS_SESSION_TOKEN }}
   TF_VAR_g73_techchallenge_db_username: ${{ secrets.DB_USERNAME }}
   TF_VAR_g73_techchallenge_db_password: ${{ secrets.DB_PASSWORD }}
+  TF_LOG: "DEBUG"
 
 jobs:
   plan:

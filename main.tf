@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "g73-techchallenge-infra"
+    bucket = "g73-techchallenge-db-infra"
     key    = "db/state/terraform.tfstate"
     region = "us-east-1"
   }

@@ -4,7 +4,7 @@ provider "aws" {
 
 terraform {
   backend "s3" {
-    bucket = "g73-techchallenge-infra"
+    bucket = "g73-techchallenge-db-infra"
     key    = "db/state/terraform.tfstate"
     region = "us-east-1"
   }
@@ -31,13 +31,24 @@ resource "aws_db_instance" "g73_techchallenge_db" {
   parameter_group_name      = "default.postgres16"
   publicly_accessible       = true
   skip_final_snapshot       = true
+  vpc_security_group_ids    = [aws_security_group.allow_rds_postgres.id]
 }
 
+resource "aws_default_vpc" "default" {
+  tags = {
+    Name = "Default VPC"
+  }
+}
+resource "aws_security_group" "allow_rds_postgres" {
+  name        = "allow_rds_postgres"
+  description = "Allow RDS Postgres inbound traffic and all outbound traffic"
+  vpc_id      = aws_default_vpc.default.id
+}
 resource "aws_security_group_rule" "g73_techchallenge_db_sg_rule" {
   type              = "ingress"
   from_port         = 5432
   to_port           = 5432
   protocol          = "tcp"
-  security_group_id = "sg-0806beb2f784f5aba"
+  security_group_id = aws_security_group.allow_rds_postgres.id
   cidr_blocks       = ["0.0.0.0/0"]
 }

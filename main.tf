@@ -40,7 +40,7 @@ resource "aws_default_vpc" "default" {
   }
 }
 resource "aws_security_group" "allow_rds_postgres" {
-  name        = "allow_tls"
+  name        = "allow_rds_postgres"
   description = "Allow RDS Postgres inbound traffic and all outbound traffic"
   vpc_id      = aws_default_vpc.default.id
 }
